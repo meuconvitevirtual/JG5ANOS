@@ -506,41 +506,143 @@
     }
 
     /* Mobile grande */
-    /* Mobile grande */
     @media (max-width: 480px) {
-      .card {
+      html, body {
+        margin: 0;
+        padding: 0;
         width: 100%;
+        height: 100vh;
+        overflow-x: hidden;
+      }
+
+      body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: stretch;
+        justify-content: stretch;
+        min-height: 100vh;
+      }
+
+      .card {
+        width: 100vw;
+        height: 100vh;
         border-radius: 0;
         margin: 0;
-        max-width: 100%;
+        max-width: 100vw;
+        max-height: 100vh;
+        display: flex;
+        flex-direction: column;
       }
 
       .video-wrapper {
         border-radius: 0;
-        height: 160px;
+        height: 40vh;
+        flex-shrink: 0;
       }
 
       .bottom {
-        min-height: 260px;
+        height: 60vh;
+        min-height: 60vh;
+        flex: 1;
         flex-direction: row;
         justify-content: space-between;
-        padding: var(--spacing-xs);
+        padding: 8px;
       }
 
       .poke-area {
         flex: 1;
         padding: 0;
-        min-height: 260px;
+        height: 100%;
       }
 
       .main-convite-image {
         object-fit: cover;
+        width: 100%;
+        height: 100%;
       }
 
       .buttons {
-        width: 95px;
+        width: 110px;
+        gap: 12px;
+        padding: 8px;
+        justify-content: space-evenly;
+      }
+
+      .round-button {
+        width: 85px;
+        height: 85px;
+      }
+
+      .round-button .icon {
+        font-size: 22px;
+      }
+
+      .round-button .label {
+        font-size: 7px;
+      }
+
+      .round-button .label span.big {
+        font-size: 8px;
+      }
+
+      .round-button::after {
+        right: -14px;
+        font-size: 16px;
+      }
+    }
+
+    /* Mobile pequeno */
+    @media (max-width: 360px) {
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        overflow-x: hidden;
+      }
+
+      body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: stretch;
+        justify-content: stretch;
+        min-height: 100vh;
+      }
+
+      .card {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        margin: 0;
+        max-width: 100vw;
+        max-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .video-wrapper {
+        height: 38vh;
+        border-radius: 0;
+        flex-shrink: 0;
+      }
+
+      .bottom {
+        height: 62vh;
+        min-height: 62vh;
+        flex: 1;
+        padding: 6px;
+      }
+
+      .poke-area {
+        height: 100%;
+        min-height: 100%;
+      }
+
+      .buttons {
+        width: 100px;
         gap: 10px;
-        padding: var(--spacing-xs);
       }
 
       .round-button {
@@ -549,11 +651,12 @@
       }
 
       .round-button .icon {
-        font-size: 18px;
+        font-size: 20px;
       }
 
       .round-button .label {
         font-size: 6px;
+        line-height: 1.1;
       }
 
       .round-button .label span.big {
@@ -566,84 +669,74 @@
       }
     }
 
-    /* Mobile pequeno */
-    @media (max-width: 360px) {
+    /* Mobile extra pequeno */
+    @media (max-width: 320px) {
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        overflow-x: hidden;
+      }
+
+      body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: stretch;
+        justify-content: stretch;
+        min-height: 100vh;
+      }
+
+      .card {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        margin: 0;
+        max-width: 100vw;
+        max-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
       .video-wrapper {
-        height: 140px;
+        height: 35vh;
+        border-radius: 0;
+        flex-shrink: 0;
       }
 
       .bottom {
-        min-height: 240px;
-        padding: 2px;
+        height: 65vh;
+        min-height: 65vh;
+        flex: 1;
+        padding: 4px;
       }
 
       .poke-area {
-        min-height: 240px;
+        height: 100%;
+        min-height: 100%;
       }
 
       .buttons {
-        width: 85px;
+        width: 90px;
         gap: 8px;
       }
 
       .round-button {
-        width: 65px;
-        height: 65px;
+        width: 70px;
+        height: 70px;
       }
 
       .round-button .icon {
-        font-size: 16px;
+        font-size: 18px;
       }
 
       .round-button .label {
         font-size: 5px;
-        line-height: 1;
       }
 
       .round-button .label span.big {
         font-size: 6px;
-      }
-
-      .round-button::after {
-        right: -10px;
-        font-size: 12px;
-      }
-    }
-
-    /* Mobile extra pequeno */
-    @media (max-width: 320px) {
-      .video-wrapper {
-        height: 120px;
-      }
-
-      .bottom {
-        min-height: 220px;
-      }
-
-      .poke-area {
-        min-height: 220px;
-      }
-
-      .buttons {
-        width: 80px;
-        gap: 6px;
-      }
-
-      .round-button {
-        width: 60px;
-        height: 60px;
-      }
-
-      .round-button .icon {
-        font-size: 14px;
-      }
-
-      .round-button .label {
-        font-size: 4px;
-      }
-
-      .round-button .label span.big {
-        font-size: 5px;
       }
     }
 
