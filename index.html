@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>JG 5 Anos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* ==============================================
+       RESET E CONFIGURAÇÕES GLOBAIS
+    ============================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /* Cores principais */
+      --primary-blue: #0056b8;
+      --primary-yellow: #ffda08;
+      --pokemon-red: #e42323;
+      --background-dark: #05030c;
+      --background-gradient-start: #1b3688;
+      --orange-accent: #f36f21;
+      --white: #ffffff;
+      --black: #000000;
+      --gray-light: #f5f5f5;
+      --gray-medium: #e2e2e2;
+      
+      /* Tipografia */
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-weight-normal: 400;
+      --font-weight-bold: 700;
+      --font-weight-extra-bold: 800;
+      --font-weight-black: 900;
+      
+      /* Espaçamentos */
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --spacing-xl: 32px;
+      
+      /* Sombras */
+      --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+      --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.2);
+      --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.4);
+      
+      /* Transições */
+      --transition-fast: 0.2s ease-in-out;
+      --transition-normal: 0.3s ease-in-out;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    /* ==============================================
+       TIPOGRAFIA OTIMIZADA
+    ============================================== */
+    
+    /* Melhoria na renderização de texto */
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-family);
+      background: radial-gradient(
+        circle at top,
+        var(--background-gradient-start) 0%,
+        var(--background-dark) 45%,
+        var(--black) 100%
+      );
+      background-attachment: fixed;
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "liga", "kern";
+    }
+
+    /* Otimização para textos pequenos */
+    .round-button .label,
+    .info {
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ==============================================
+       CARD PRINCIPAL
+    ============================================== */
+    .card {
+      width: 370px;
+      max-width: calc(100vw - 2rem);
+      background: var(--gray-light);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-heavy);
+      border: 2px solid var(--gray-medium);
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+      will-change: transform;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    }
+
+    /* ==============================================
+       SEÇÃO DE VÍDEO
+    ============================================== */
+    .video-wrapper {
+      background: linear-gradient(135deg, #3f5efb, #fc466b);
+      height: 210px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .video-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.1);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border: none;
+      outline: none;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ==============================================
+       BOTÕES DE AÇÃO
+    ============================================== */
+    .buttons {
+      width: 120px;
+      padding: var(--spacing-md) var(--spacing-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* ==============================================
+       SEÇÃO INFERIOR
+    ============================================== */
+    .bottom {
+      display: flex;
+      background: var(--primary-yellow);
+      min-height: 310px;
+      position: relative;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* ==============================================
+       ÁREA DA IMAGEM PRINCIPAL
+    ============================================== */
+    .poke-area {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      min-height: 310px;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      padding: 0;
+    }
+
+    .main-image-section {
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      width: 100%;
+      height: 100%;
+    }
+
+    .main-convite-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+      transition: none;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .round-button {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--white);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-medium);
+      border: 4px solid var(--orange-accent);
+      position: relative;
+      padding: 6px;
+      text-align: center;
+      transition: all var(--transition-fast);
+      cursor: pointer;
+      outline: none;
+      will-change: transform;
+    }
+
+    .round-button:hover,
+    .round-button:focus {
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: var(--shadow-heavy);
+      border-color: var(--primary-blue);
+    }
+
+    .round-button:active {
+      transform: scale(0.98);
+      transition-duration: 0.1s;
+    }
+
+    .round-button .icon {
+      font-size: 24px;
+      margin-bottom: 2px;
+      transition: transform var(--transition-fast);
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+    }
+
+    .round-button:hover .icon {
+      transform: scale(1.1);
+    }
+
+    .round-button .label {
+      font-size: 8px;
+      font-weight: var(--font-weight-black);
+      color: var(--primary-blue);
+      line-height: 1.1;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .round-button .label span.big {
+      display: block;
+      font-size: 9px;
+      font-weight: var(--font-weight-black);
+      letter-spacing: 0.2px;
+      margin-top: 1px;
+    }
+
+    /* Indicador visual */
+    .round-button::after {
+      position: absolute;
+      right: -18px;
+      bottom: 4px;
+      font-size: 18px;
+      text-shadow: 1px 1px 0 var(--primary-yellow);
+      opacity: 0.8;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.8;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+
+    /* ==============================================
+       MODAL DE PRESENTE
+    ============================================== */
+    .presente-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(5px);
+    }
+
+    .presente-modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 95vw;
+      max-height: 95vh;
+      width: auto;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow-heavy);
+      padding: var(--spacing-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-sm);
+      overflow: auto;
+    }
+
+    .modal-image {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: var(--shadow-medium);
+      object-fit: contain;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: var(--spacing-sm);
+      right: var(--spacing-sm);
+      background: var(--pokemon-red);
+      color: var(--white);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--transition-fast);
+    }
+
+    .modal-close:hover {
+      transform: scale(1.1);
+      background: #d01717;
+    }
+
+    .modal-title {
+      font-size: 24px;
+      font-weight: var(--font-weight-black);
+      color: var(--primary-blue);
+      text-align: center;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .back-button {
+      background: var(--primary-yellow);
+      color: var(--black);
+      border: 3px solid var(--black);
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: var(--font-weight-black);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-transform: uppercase;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+      background: #ffda08;
+    }
+
+    /* Responsividade da Modal */
+    @media (max-width: 768px) {
+      .modal-content {
+        max-width: 98vw;
+        max-height: 98vh;
+        padding: var(--spacing-sm);
+        gap: var(--spacing-xs);
+      }
+
+      .modal-image {
+        max-width: 100%;
+        border-radius: 8px;
+      }
+
+      .modal-title {
+        font-size: 20px;
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .back-button {
+        padding: var(--spacing-xs) var(--spacing-md);
+        font-size: 14px;
+      }
+
+      .modal-close {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .modal-content {
+        margin: var(--spacing-xs);
+        padding: var(--spacing-xs);
+      }
+
+      .modal-title {
+        font-size: 18px;
+      }
+
+      .back-button {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 12px;
+        border-radius: 20px;
+      }
+
+      .modal-close {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+        top: 5px;
+        right: 5px;
+      }
+    }
+
+    @media (max-height: 600px) {
+      .modal-content {
+        max-height: 95vh;
+      }
+
+      .modal-image {
+        max-height: 70vh;
+        object-fit: contain;
+      }
+    }
+
+    /* ==============================================
+       RESPONSIVIDADE
+    ============================================== */
+    
+    /* Tablets grandes e laptops pequenos */
+    @media (max-width: 1024px) {
+      .card {
+        width: 400px;
+        max-width: calc(100vw - 1rem);
+      }
+    }
+
+    /* Tablets */
+    @media (max-width: 768px) {
+      .card {
+        width: 100%;
+        max-width: calc(100vw - 1rem);
+        border-radius: 12px;
+      }
+
+      .video-wrapper {
+        height: 180px;
+        border-radius: 12px 12px 0 0;
+      }
+
+      .bottom {
+        min-height: 280px;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .buttons {
+        width: 110px;
+        gap: 14px;
+      }
+
+      .round-button {
+        width: 85px;
+        height: 85px;
+      }
+
+      .round-button .icon {
+        font-size: 22px;
+      }
+
+      .round-button .label {
+        font-size: 7.5px;
+      }
+
+      .round-button .label span.big {
+        font-size: 8.5px;
+      }
+    }
+
+    /* Mobile grande */
+    /* Mobile grande */
+    @media (max-width: 480px) {
+      .card {
+        width: 100%;
+        border-radius: 0;
+        margin: 0;
+        max-width: 100%;
+      }
+
+      .video-wrapper {
+        border-radius: 0;
+        height: 160px;
+      }
+
+      .bottom {
+        min-height: 260px;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: var(--spacing-xs);
+      }
+
+      .poke-area {
+        flex: 1;
+        padding: 0;
+        min-height: 260px;
+      }
+
+      .main-convite-image {
+        object-fit: cover;
+      }
+
+      .buttons {
+        width: 95px;
+        gap: 10px;
+        padding: var(--spacing-xs);
+      }
+
+      .round-button {
+        width: 75px;
+        height: 75px;
+      }
+
+      .round-button .icon {
+        font-size: 18px;
+      }
+
+      .round-button .label {
+        font-size: 6px;
+      }
+
+      .round-button .label span.big {
+        font-size: 7px;
+      }
+
+      .round-button::after {
+        right: -12px;
+        font-size: 14px;
+      }
+    }
+
+    /* Mobile pequeno */
+    @media (max-width: 360px) {
+      .video-wrapper {
+        height: 140px;
+      }
+
+      .bottom {
+        min-height: 240px;
+        padding: 2px;
+      }
+
+      .poke-area {
+        min-height: 240px;
+      }
+
+      .buttons {
+        width: 85px;
+        gap: 8px;
+      }
+
+      .round-button {
+        width: 65px;
+        height: 65px;
+      }
+
+      .round-button .icon {
+        font-size: 16px;
+      }
+
+      .round-button .label {
+        font-size: 5px;
+        line-height: 1;
+      }
+
+      .round-button .label span.big {
+        font-size: 6px;
+      }
+
+      .round-button::after {
+        right: -10px;
+        font-size: 12px;
+      }
+    }
+
+    /* Mobile extra pequeno */
+    @media (max-width: 320px) {
+      .video-wrapper {
+        height: 120px;
+      }
+
+      .bottom {
+        min-height: 220px;
+      }
+
+      .poke-area {
+        min-height: 220px;
+      }
+
+      .buttons {
+        width: 80px;
+        gap: 6px;
+      }
+
+      .round-button {
+        width: 60px;
+        height: 60px;
+      }
+
+      .round-button .icon {
+        font-size: 14px;
+      }
+
+      .round-button .label {
+        font-size: 4px;
+      }
+
+      .round-button .label span.big {
+        font-size: 5px;
+      }
+    }
+
+    /* ==============================================
+       ACESSIBILIDADE E PERFORMANCE
+    ============================================== */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .round-button::after {
+        animation: none;
+      }
+    }
+
+    @media (hover: none) {
+      .card:hover {
+        transform: none;
+      }
+      
+      .round-button:hover {
+        transform: none;
+      }
+    }
+
+    /* Melhor contraste para alto contraste */
+    @media (prefers-contrast: high) {
+      .card {
+        border-width: 3px;
+      }
+
+      .round-button {
+        border-width: 5px;
+      }
+
+      .info {
+        text-shadow: 
+          2px 2px 0 var(--primary-yellow),
+          3px 3px 0 var(--black),
+          4px 4px 0 var(--black);
+      }
+    }
+
+    /* Otimizações para impressão */
+    @media print {
+      body {
+        background: white;
+      }
+
+      .card {
+        box-shadow: none;
+        border: 2px solid var(--black);
+      }
+
+      .video-wrapper {
+        background: var(--gray-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .video-wrapper::after {
+        content: 'Vídeo: pokemon.mp4';
+        font-weight: bold;
+      }
+
+      .video-wrapper video {
+        display: none;
+      }
+
+      .round-button::after {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- TOPO COM VÍDEO -->
+    <div class="video-wrapper">
+      <!-- Altere o src se o vídeo tiver outro nome ou estiver em outra pasta -->
+      <video src="pokemon.mp4" controls></video>
+    </div>
+
+    <!-- PARTE INFERIOR -->
+    <div class="bottom">
+      <!-- IMAGEM PRINCIPAL -->
+      <div class="poke-area">
+        <div class="main-image-section">
+          <img src="convite.png" alt="Convite JG - Pokémon" class="main-convite-image" />
+        </div>
+      </div>
+
+      <!-- BOTÕES -->
+      <div class="buttons">
+        <!-- SUGESTÃO DE PRESENTE -->
+        <a
+          class="round-button"
+          href="#"
+          onclick="openPresenteModal(); return false;"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="icon">🎁</div>
+          <div class="label">
+            <span>SUGESTÃO DE</span>
+            <span class="big">PRESENTE</span>
+          </div>
+        </a>
+
+        <!-- LOCALIZAÇÃO -->
+        <a
+          class="round-button"
+          href="https://www.google.com/maps/place/Festan%C3%A7a+Buffet/@-19.8552159,-43.9576362,17z/data=!3m1!4b1!4m6!3m5!1s0xa6906ec4fb5da1:0x7b654a5c3e8382d3!8m2!3d-19.8552159!4d-43.9576362!16s%2Fg%2F11h0nfwy8?entry=ttu&g_ep=EgoyMDI1MTExMS4wIKXMDSoASAFQAw%3D%3D"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="icon">📍</div>
+          <div class="label">
+            <span>LOCALIZAÇÃO</span>
+          </div>
+        </a>
+
+        <!-- CONFIRMAÇÃO DE PRESENÇA -->
+        <a
+          class="round-button"
+          href="https://docs.google.com/forms/d/e/1FAIpQLScBGL6VFm5tQC-lXenzbSAxzsblnNkUUwO_sAB82IL4CMA1iw/viewform?usp=preview"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="icon">✅</div>
+          <div class="label">
+            <span>CONFIRME</span>
+            <span class="big">SUA PRESENÇA</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE PRESENTE -->
+  <div class="presente-modal" id="presenteModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closePresenteModal()">&times;</button>
+      <h2 class="modal-title">🎁 Sugestão de Presente 🎁</h2>
+      <img src="presente.png" alt="Lista de Presentes" class="modal-image" />
+      <button class="back-button" onclick="closePresenteModal()">
+        ← Voltar ao Convite
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function openPresenteModal() {
+      document.getElementById('presenteModal').classList.add('active');
+      document.body.style.overflow = 'hidden'; // Previne scroll do fundo
+    }
+
+    function closePresenteModal() {
+      document.getElementById('presenteModal').classList.remove('active');
+      document.body.style.overflow = 'auto'; // Restaura scroll
+    }
+
+    // Fecha modal ao clicar fora dela
+    document.getElementById('presenteModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closePresenteModal();
+      }
+    });
+
+    // Fecha modal com tecla ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closePresenteModal();
+      }
+    });
+  </script>
+</body>
+</html>
